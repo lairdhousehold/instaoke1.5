@@ -1,0 +1,39 @@
+<body ng-controller="SearchCtrl">
+    <div>
+        <div class="text-center contianer">
+            <div>
+                <img src="/app/img/instaOke2.jpg"> <h1 id="head">Search</h1>
+            </div>
+            <h5 class="search"> This search queries all of youtube for anything karaoke. Just type in your song or band name and instantly the karaoke version will come up if its available
+            </h5>
+            <form>
+                <input type="text" id="query" ng-model="query" placeholder="Search..." class='form-control' ng-keyup="getVideos(query)">
+                <br>
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="videos" ng-init="getVideos(query)">
+            </div>
+        </div>
+        <article class="col-md-11 box">
+            <div class="col-md-6" id="video1" ng-repeat="video in data">
+                <div class="video {{data.indexOf(video) + 1}}">
+                    <strong><p Id="title">{{video.snippet.title}} </p></strong>
+                    <div class="col-sm-6 prv" ng-show="preview">
+                        <button class="btn" ng-click="preview=false">close preview</button>
+                        <iframe width="853" height="480" ng-src='{{video.videoID}}' frameborder="0" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <img src="{{video.snippet.thumbnails.medium.url}}">
+                    <p class="hidden">{{video.id}}</p>
+                </div>
+                <button class="btn" ng-click="saveVideos(video)">Save to Your Collection</button>
+                <button class="btn" ng-click="preview=true">preview</button>
+            </div>
+
+    </article>
+    <!--  <iframe width="853" height="480"  ng-src='{{video.videoID}}' ng-model="newVideo.videoID" frameborder="0" allowfullscreen> </iframe> -->
+</body>
